@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_chinookatempt2fromscrach" default="compile.module.chinookatempt2fromscrach">
+  <dirname property="module.chinookatempt2fromscrach.basedir" file="${ant.file.module_chinookatempt2fromscrach}"/>
+  
+  <property name="module.jdk.home.chinookatempt2fromscrach" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.chinookatempt2fromscrach" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.chinookatempt2fromscrach" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.chinookatempt2fromscrach" value="-encoding UTF-8 -source 1.8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="chinookatempt2fromscrach.output.dir" value="${module.chinookatempt2fromscrach.basedir}/out/production/ChinookAtempt2FromScrach"/>
+  <property name="chinookatempt2fromscrach.testoutput.dir" value="${module.chinookatempt2fromscrach.basedir}/out/test/ChinookAtempt2FromScrach"/>
+  
+  <path id="chinookatempt2fromscrach.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="chinookatempt2fromscrach.module.production.classpath">
+    <path refid="${module.jdk.classpath.chinookatempt2fromscrach}"/>
+    <path refid="library.lib.classpath"/>
+  </path>
+  
+  <path id="chinookatempt2fromscrach.runtime.production.module.classpath">
+    <pathelement location="${chinookatempt2fromscrach.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+  </path>
+  
+  <path id="chinookatempt2fromscrach.module.classpath">
+    <path refid="${module.jdk.classpath.chinookatempt2fromscrach}"/>
+    <pathelement location="${chinookatempt2fromscrach.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+  </path>
+  
+  <path id="chinookatempt2fromscrach.runtime.module.classpath">
+    <pathelement location="${chinookatempt2fromscrach.testoutput.dir}"/>
+    <pathelement location="${chinookatempt2fromscrach.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.chinookatempt2fromscrach">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.chinookatempt2fromscrach">
+    <patternset refid="excluded.from.module.chinookatempt2fromscrach"/>
+  </patternset>
+  
+  <path id="chinookatempt2fromscrach.module.sourcepath">
+    <dirset dir="${module.chinookatempt2fromscrach.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.chinookatempt2fromscrach" depends="compile.module.chinookatempt2fromscrach.production,compile.module.chinookatempt2fromscrach.tests" description="Compile module ChinookAtempt2FromScrach"/>
+  
+  <target name="compile.module.chinookatempt2fromscrach.production" depends="register.custom.compilers" description="Compile module ChinookAtempt2FromScrach; production classes">
+    <mkdir dir="${chinookatempt2fromscrach.output.dir}"/>
+    <javac2 destdir="${chinookatempt2fromscrach.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.chinookatempt2fromscrach}/javac">
+      <compilerarg line="${compiler.args.chinookatempt2fromscrach}"/>
+      <bootclasspath refid="chinookatempt2fromscrach.module.bootclasspath"/>
+      <classpath refid="chinookatempt2fromscrach.module.production.classpath"/>
+      <src refid="chinookatempt2fromscrach.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.chinookatempt2fromscrach"/>
+    </javac2>
+    
+    <copy todir="${chinookatempt2fromscrach.output.dir}">
+      <fileset dir="${module.chinookatempt2fromscrach.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.chinookatempt2fromscrach.tests" depends="register.custom.compilers,compile.module.chinookatempt2fromscrach.production" description="compile module ChinookAtempt2FromScrach; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.chinookatempt2fromscrach" description="cleanup module">
+    <delete dir="${chinookatempt2fromscrach.output.dir}"/>
+    <delete dir="${chinookatempt2fromscrach.testoutput.dir}"/>
+  </target>
+</project>
