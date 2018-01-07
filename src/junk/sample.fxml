@@ -22,7 +22,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-              <MenuItem fx:id="menuItemExit" mnemonicParsing="false" text="Exit" />
+              <MenuItem fx:id="menuItemExit" mnemonicParsing="false" onAction="#closeWindowAction" text="Exit" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
@@ -37,7 +37,7 @@
       </MenuBar>
    </top>
    <left>
-      <TableView fx:id="tableView" prefHeight="387.0" prefWidth="436.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tableView" prefHeight="387.0" prefWidth="436.0" styleClass="green" stylesheets="@styles.css" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="c1" prefWidth="75.0" text="C1" />
           <TableColumn fx:id="c2" prefWidth="75.0" text="C2" />
@@ -87,11 +87,11 @@
             </GridPane>
             <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <Button fx:id="btnRefresh" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#test" text="Button" />
-                  <Button fx:id="btnMakeEmpty" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="Button" />
-                  <Button fx:id="btnAdd" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="Button" />
-                  <Button fx:id="btnEdit" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="Button" />
-                  <Button fx:id="btnDelete" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="Button" />
+                  <Button fx:id="btnRefresh" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" styleClass="btnRefresh-purple" stylesheets="@styles.css" text="Button" />
+                  <Button fx:id="btnMakeEmpty" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" styleClass="btnRefresh-purple" stylesheets="@styles.css" text="Button" />
+                  <Button fx:id="btnAdd" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" styleClass="add-red" stylesheets="@styles.css" text="Button" />
+                  <Button fx:id="btnEdit" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" styleClass="edit-green" stylesheets="@styles.css" text="Button" />
+                  <Button fx:id="btnDelete" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" styleClass="delete-red" stylesheets="@styles.css" text="Button" />
                </children>
             </HBox>
          </children>

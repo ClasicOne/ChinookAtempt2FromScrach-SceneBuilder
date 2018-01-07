@@ -20,10 +20,10 @@ public class FormView extends BorderPane {
     MenuItem menuItem_enable_edit, menuItem_disable_edit, menuItem_enable_ViewForm, menuItem_disable_ViewForm;
     VBox vBox;
 
-    public FormView(){
+    FormView(){
         initForm();
     }
-    public void initForm(){
+    private void initForm(){
         this.setPadding(new Insets(10,10,10,10));
         // this.sts_bar = new StatusBar();
 
@@ -33,7 +33,7 @@ public class FormView extends BorderPane {
         createRecForm();
         setEventHandlers();
     }
-    public void createRecForm(){
+    private void createRecForm(){
         vBox = new VBox(10);
         {
             rec_form = new GridPane();
@@ -83,33 +83,7 @@ public class FormView extends BorderPane {
                 RecordForm. btn_MakeEmpty = new Button("Make Empty Fields");
                 RecordForm. btn_Delete = new Button("Delete");
                 RecordForm. btn_Reftesh = new Button("Refresh");
-                RecordForm. btn_Reftesh.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
-                RecordForm. btn_MakeEmpty.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
-                table_songs.setStyle("-fx-background-color:\n" +
-                        "        linear-gradient(#f0ff35, #a9ff00),\n" +
-                        "        radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%);\n" +
-                        "    -fx-background-radius: 6, 5;\n" +
-                        "    -fx-background-insets: 0, 1;\n" +
-                        "    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );\n" +
-                        "    -fx-text-fill: #395306;");
-                RecordForm.btn_edit.setStyle("-fx-background-color:\n" +
-                        "        linear-gradient(#f0ff35, #a9ff00),\n" +
-                        "        radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%);\n" +
-                        "    -fx-background-radius: 6, 5;\n" +
-                        "    -fx-background-insets: 0, 1;\n" +
-                        "    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );\n" +
-                        "    -fx-text-fill: #395306;");
-                RecordForm.btn_Delete.setStyle("-fx-background-color: linear-gradient(#ff5400, #be1d00);\n" +
-                        "    -fx-background-radius: 30;\n" +
-                        "    -fx-background-insets: 0;\n" +
-                        "    -fx-text-fill: white;");
-                RecordForm. btn_add.setStyle("-fx-background-color:\n" +
-                        "        linear-gradient(red, darkred),\n" +
-                        "        radial-gradient(center 50% -40%, radius 200%, orangered 45%, red 50%);\n" +
-                        "    -fx-background-radius: 6, 5;\n" +
-                        "    -fx-background-insets: 0, 1;\n" +
-                        "    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );\n" +
-                        "    -fx-text-fill: white;");
+
 
                 btn_bar.getChildren().addAll(RecordForm. btn_Reftesh ,RecordForm. btn_MakeEmpty, RecordForm. btn_add, RecordForm. btn_edit, RecordForm. btn_Delete);
                 btn_bar.setAlignment(Pos.TOP_RIGHT);
@@ -118,7 +92,7 @@ public class FormView extends BorderPane {
         }
         this.setCenter(vBox);
     }
-    public void createSongsTable(){
+    private void createSongsTable(){
         DataNode dataNode = new DataNode();
         table_songs = new TableView<>();
         {
@@ -206,6 +180,7 @@ public class FormView extends BorderPane {
         RecordForm. btn_edit.setDisable(state);
         RecordForm. btn_MakeEmpty.setDisable(state);
         RecordForm. btn_Delete.setDisable(state);
+        RecordForm. btn_Reftesh.setDisable(state);
 
     }
     private void setEventHandlers(){

@@ -1,5 +1,6 @@
 package junk;
 
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -31,8 +32,10 @@ public class Controller implements Initializable{
         eventHandler();
         createSongsTable();
     }
-
-    @FXML public void recForm(){
+    @FXML private void closeWindowAction(){
+        Platform.exit();
+    }
+    private void recForm(){
         lableName.setText("Name");
         lableName.setText("Album");
         lableName.setText("Media type");
@@ -48,15 +51,8 @@ public class Controller implements Initializable{
         btnRefresh.setText("Refresh");
 
     }
-    @FXML public void test(){
-        System.out.println("Asdas");
-    }
-    @FXML public void eventHandler(){
-       /* menuItemExit.setOnAction(event -> {
-            Window window ; = getScene().getWindow();
-            if (window instanceof Stage)
-                ((Stage) window).close();
-        });*/
+    private void eventHandler(){
+
         tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             showSongDetails(newValue);
             btnEdit.setOnAction(event -> {
@@ -129,7 +125,7 @@ public class Controller implements Initializable{
             DataNode dataNode = new DataNode();
 
             dataNode.getdata("songs");
-            ObservableList list = dataNode.getSongsObservableList();
+            // ObservableList list = dataNode.getSongsObservableList();
             tableView.setItems(dataNode.getSongsObservableList());
         });
     }
@@ -206,6 +202,7 @@ public class Controller implements Initializable{
         btnEdit.setDisable(state);
         btnMakeEmpty.setDisable(state);
         btnDelete.setDisable(state);
+        btnRefresh.setDisable(state);
 
     }
 }
