@@ -11,8 +11,9 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import junk.controls.RecordForm;
-
+import javafx.scene.control.Alert.AlertType;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable{
@@ -28,13 +29,13 @@ public class Controller implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        recForm();
+       // recForm();
         eventHandler();
         createSongsTable();
     }
     @FXML private void closeWindowAction(){
         Platform.exit();
-    }
+}
     private void recForm(){
         lableName.setText("Name");
         lableName.setText("Album");
@@ -78,8 +79,17 @@ public class Controller implements Initializable{
                 //createSongsTable();
             });
             btnDelete.setOnAction(event -> {
-                DataNode. deleteFromDB(newValue.getName(), newValue.getAlbum(), newValue.getMediaType(), newValue.getGenre(), newValue.getComposer());
-                clearFields();
+                Alert alert = new Alert(AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation Dialog");
+                //alert.setHeaderText("Look, a Confirmation Dialog");
+                alert.setContentText("Ar tikrai nori ištrinti įrašą?");
+
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK){
+                    DataNode. deleteFromDB(newValue.getName(), newValue.getAlbum(), newValue.getMediaType(), newValue.getGenre(), newValue.getComposer());
+                    clearFields();
+                }
+
 
             });
         });

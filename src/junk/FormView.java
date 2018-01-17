@@ -10,6 +10,8 @@ import javafx.stage.Window;
 import junk.controls.RecordForm;
 import junk.controls.StatusBar;
 
+import java.util.Optional;
+
 
 public class FormView extends BorderPane {
     GridPane	rec_form;
@@ -214,9 +216,16 @@ public class FormView extends BorderPane {
                 //createSongsTable();
             });
             RecordForm. btn_Delete.setOnAction(event -> {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation Dialog");
+                //alert.setHeaderText("Look, a Confirmation Dialog");
+                alert.setContentText("Ar tikrai nori ištrinti įrašą?");
+
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK){
                 DataNode. deleteFromDB(newValue.getName(), newValue.getAlbum(), newValue.getMediaType(), newValue.getGenre(), newValue.getComposer());
                 clearFields();
-
+                }
             });
         });
         menuItem_disable_edit.setOnAction(event -> toggleButtons(true));
