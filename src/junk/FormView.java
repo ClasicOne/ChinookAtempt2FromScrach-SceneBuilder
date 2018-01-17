@@ -8,14 +8,13 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import junk.controls.RecordForm;
-import junk.controls.StatusBar;
+
 
 import java.util.Optional;
 
 
 public class FormView extends BorderPane {
     GridPane	rec_form;
-    StatusBar sts_bar;
     MenuBar menu_bar;
     MenuItem	mit_file, mit_dbase, mit_exit;
     TableView<Songs> table_songs;
@@ -27,9 +26,6 @@ public class FormView extends BorderPane {
     }
     private void initForm(){
         this.setPadding(new Insets(10,10,10,10));
-        // this.sts_bar = new StatusBar();
-
-
         createMenuBar();
         createSongsTable();
         createRecForm();
@@ -98,7 +94,6 @@ public class FormView extends BorderPane {
         DataNode dataNode = new DataNode();
         table_songs = new TableView<>();
         {
-            //table_songs.setItems(model.getSongData());
             TableColumn<Songs, String> col_name = new TableColumn<>("Song name");
             col_name.setCellValueFactory(new PropertyValueFactory<>("name"));
             col_name.setMinWidth(Region.USE_PREF_SIZE);
@@ -128,16 +123,8 @@ public class FormView extends BorderPane {
             table_songs.setItems(dataNode.getSongsObservableList());
 
         }
-       /* try {
-            RecordForm. btn_Reftesh.setOnAction(event -> {
-                table_songs.refresh();
-            });
-        }catch (NullPointerException e){
-            e.printStackTrace();
-        }*/
 
         table_songs.setMinWidth(800);
-        //table_songs.setMinWidth(BorderPane.USE_PREF_SIZE);
         this.setLeft(table_songs);
 
     }

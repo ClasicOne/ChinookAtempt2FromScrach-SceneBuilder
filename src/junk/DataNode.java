@@ -7,7 +7,7 @@ import java.sql.*;
 
 public class DataNode {
 
-    private  ObservableList<Songs> songsObservableList = null;
+    private  ObservableList<Songs> songsObservableList;
     private final static String db= "jdbc:sqlite:./data/dbs/chinook.db";
 
 
@@ -73,10 +73,10 @@ public class DataNode {
                 "254,\n" +
                 "" + price + ");";
         query(sql);
-       // dbShit(sql);
+       // dbExecute(sql);
     }
 
-    private static void dbShit(String sql) {
+    private static void dbExecute(String sql) {
         try{
             Statement st =  DriverManager.getConnection(db).createStatement();
             st.execute(sql);
@@ -91,7 +91,7 @@ public class DataNode {
     private static void query(String sql) {
         String[] sqlArray = sql.split(";");
         for (String a:sqlArray) {
-            dbShit(a);
+            dbExecute(a);
         }
     }
     private void readDB(String source) {
@@ -105,7 +105,7 @@ public class DataNode {
              Statement stmt = conn.createStatement();
              ResultSet rset = stmt.executeQuery(sql)) {
 
-            Songs record = null;
+            Songs record;
             while (rset.next())
             {
                 record = new Songs ( rset.getString("Song_name"),
